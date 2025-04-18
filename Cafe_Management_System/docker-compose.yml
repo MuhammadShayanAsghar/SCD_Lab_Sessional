@@ -1,0 +1,26 @@
+networks:
+  default:
+    name: Nodemongo_APP
+services:
+  app: #node
+    container_name: docker-node
+    build: .
+    ports:
+     - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
+    environment:
+      - MONGO_URI=NODE_dbURL
+    depends_on:
+     - mongo
+    networks:
+      - default
+  mongo:
+    container_name: mongo
+    image: mongo
+    ports:
+      - $DB_LOCAL_PORT:$DB_DOCKER_PORT
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - default
+volumes:
+  mongo_data:
