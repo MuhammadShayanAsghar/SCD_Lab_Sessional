@@ -1,5 +1,5 @@
 FROM node:20-alpine
-WORKDIR /api-gateway
+WORKDIR /customer-services
 COPY . .
 RUN yarn install –production
 CMD ["node", "./src/index.js"]
